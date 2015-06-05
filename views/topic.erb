@@ -1,10 +1,13 @@
 <h1><%= @topic['title'] %></h1>
-<p>Vote!</p>
+<form method="POST" action="/topics/<%= @topic_id %>/tag">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="submit" value="vote">
+</form>
 <p><%= @topic['num_votes'] %></p>
 <h3><%= @topic['created_at'] %></h3>
 <p><%= @topic['message'] %></p>
 <a href="/topics/<%= @topic_id %>/edit"><%= @edit_topic%></a>
-<p><a href="/topics/<%= @topic['tag'] %>"><%= @topic['tag'] %></a></p>
+<p><a href="/topics/all/<%= @topic['tag'] %>"><%= @topic['tag'] %></a></p>
 <p><%= @topic_author %></p>
 <p><%= @num_comments %></p>
 <a href="/topics/<%= @topic_id %>/comments/new">Leave comment</a>

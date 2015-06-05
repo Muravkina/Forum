@@ -14,7 +14,7 @@ CREATE TABLE topics (
   user_id INTEGER REFERENCES users(id),
   title VARCHAR NOT NULL,
   message TEXT NOT NULL,
-  num_votes INTEGER,
+  num_votes INTEGER DEFAULT 0,
   created_at DATE,
   tag VARCHAR
 );

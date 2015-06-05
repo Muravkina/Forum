@@ -7,11 +7,16 @@
   <script src="/scripts/jquery-2.1.4.js" type="text/javascript"></script>
 </head>
 <body>
-  <a href="/topics">All topics</a>
-  <form method="POST" action='/users/login'>
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Log Out">
-  </form>
+  <% if logged_in? %>
+    <a href="/topics">All topics</a>
+    <form method="POST" action='/users/login'>
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Log Out">
+   </form>
+    <% if request.path != "/users/#{current_user}" %>
+      <a href="/users/<%=current_user%>">Profile</a>
+    <% end %>
+  <% end %>
   <%= yield %>
 
 <script src="/scripts/main.js" type="text/javascript"></script>

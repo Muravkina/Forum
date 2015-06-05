@@ -8,11 +8,7 @@
     @topics.each do |topic| %>
     <tr>
       <td><a href="/topics/<%= topic['id'] %>"><%= topic['title'] %></a></td>
-      <td> <% if topic['num_votes'] != nil %>
-              <%= topic['num_votes'] %></td>
-          <% else %>
-            0
-           <% end %>
+      <td><%= topic['num_votes'] %></td>
       <td><%= topic['num_comments'] %></td>
     </tr>
     <% end %>

@@ -6,5 +6,6 @@ gem 'sinatra-contrib'
 gem 'pry'
 gem 'pg'
 gem 'rest-client'
+gem 'redcarpet'
 
 

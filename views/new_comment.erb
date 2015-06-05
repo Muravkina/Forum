@@ -4,8 +4,9 @@
 <h1><%= @user_name %></h1>
 <form method="POST" action="/topics/<%= @topic_id %>/comments">
   <label for="subject">Subject</label>
-  <input type="text" name="subject" id="subject">
+  <input type="text" name="subject" id="subject" value ="<%= @subject %>" >
   <label for="message">Comment</label>
   <textarea name="message" id="message"></textarea>
   <input type="submit" value="Post comment">
 </form>
+<p><%= @empty_message %></p>
