@@ -1,0 +1,12 @@
+<form method="POST" action="/topics/<%= @topic_id %>">
+  <input type="hidden" name="_method" value = "PATCH">
+  <label for="title">Title</label>
+  <input type="text" name="title" id="title">
+  <label for="message">Text</label>
+  <textarea name="message" id="message"></textarea>
+  <input type="submit" value="Edit topic">
+</form>
+<form method="POST" action="/topics/<%= @topic_id %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Topic">
+</form>

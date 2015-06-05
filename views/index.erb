@@ -1,0 +1,28 @@
+<h1>Welcome to the Hickory Dickory</h1>
+<a href="/topics">View all the topics</a>
+<div class="sin_up">
+  <h3>Join us today</h3>
+  <%= @authentication_message %>
+  <form method="POST" action="/users">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" placeholder="name">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="email">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="password">
+    <label for="repeat_password">Repeat password</label>
+    <input type="password" name="repeat_password" id="repeat_password" placeholder="repeat password">
+    <input type="submit" value="Sign Up">
+  </form>
+</h3>
+<div class="log_in">
+  <h3>Already a member?</h3>
+  <p> <%= @message %>
+  <form method="POST" action="/users/login">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="email">
+    <label type="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="password">
+    <input type="submit" value="Log In">
+  </form>
+</div>

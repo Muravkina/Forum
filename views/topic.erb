@@ -1,0 +1,19 @@
+<h1><%= @topic['title'] %></h1>
+<p>Vote!</p>
+<p><%= @topic['num_votes'] %></p>
+<h3><%= @topic['created_at'] %></h3>
+<p><%= @topic['message'] %></p>
+<a href="/topics/<%= @topic_id %>/edit"><%= @edit_topic%></a>
+<p><a href="/topics/<%= @topic['tag'] %>"><%= @topic['tag'] %></a></p>
+<p><%= @topic_author %></p>
+<p><%= @num_comments %></p>
+<a href="/topics/<%= @topic_id %>/comments/new">Leave comment</a>
+<% @comments.each do |comment| %>
+ <p><%= comment["subject"] %></p>
+ <p><%= comment["created_at"] %></p>
+ <p><%= comment["message"] %></p>
+ <p><%= comment["comment_author"] %></p>
+ <% if current_user == comment["user_id"] %>
+  <a href="/topics/<%= @topic_id %>/comments/<%= comment["id"] %>/edit">Edit</a>
+ <% end %>
+<% end %>

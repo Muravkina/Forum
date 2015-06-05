@@ -1,0 +1,24 @@
+<!-- <img> -->
+<h1><%= @user_name %></h1>
+<h2><%= @user_email %></h2>
+<p><%= @user_num_comments %></p>
+<p><%= @user_num_topics %></p>
+<a href="/users/<%= current_user %>/edit">edit profile</a>
+<h1>Your Topics</h1>
+<table>
+<tr>
+  <td>Topic</td>
+  <td>Comments</td>
+  <td>Votes</td>
+</tr>
+<% if @topics != nil
+   @topics.each do |topic| %>
+  <tr>
+  <td><a href="/topics/<%= topic['id'] %>"><%= topic['title'] %></a></td>
+  <td><%= topic['topic_num_comments'] %> </td>
+  <td><%= topic['num_votes'] %></td>
+  </tr>
+  <% end %>
+  <% end %>
+</table>
+<a href="/topics/<%= current_user %>/new">create new</a>

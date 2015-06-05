@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <td>Topic</td>
+    <td>Votes</td>
+    <td>Comments</td>
+  </tr>
+  <% if @topics != nil
+    @topics.each do |topic| %>
+    <tr>
+      <td><a href="/topics/<%= topic['id'] %>"><%= topic['title'] %></a></td>
+      <td> <% if topic['num_votes'] != nil %>
+              <%= topic['num_votes'] %></td>
+          <% else %>
+            0
+           <% end %>
+      <td><%= topic['num_comments'] %></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+  <% if logged_in? %>
+    <a href="/topics/<%= current_user %>/new">create new</a>
+  <% end %>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hickory Dickory Forum</title>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/scripts/jquery-2.1.4.js" type="text/javascript"></script>
+</head>
+<body>
+  <a href="/topics">All topics</a>
+  <form method="POST" action='/users/login'>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Log Out">
+  </form>
+  <%= yield %>
+
+<script src="/scripts/main.js" type="text/javascript"></script>
+</body>
+</html>
