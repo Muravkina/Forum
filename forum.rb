@@ -147,14 +147,14 @@ module Forum
     post '/topics' do
       @title = params[:title]
       @message = @markdown.render(params[:message])
-
       if get_geolocation != nil
         @location = @data["city"]
+        tags = "#{@location.gsub(" ", "")}, #{params[:tags]}".gsub(",", "").gsub("#", "")
       end
       if not_empty? (@title)
         if not_empty? (@message)
           binding.pry
-          results = $db.exec_params("INSERT INTO topics (user_id, title, message, tag, created_at) VALUES ($1, $2, $3, $4, CURRENT_DATE) RETURNING id", [current_user, @title, @message, @location])
+          results = $db.exec_params("INSERT INTO topics (user_id, title, message, tag, created_at) VALUES ($1, $2, $3, $4, CURRENT_DATE) RETURNING id", [current_user, @title, @message, tags])
           topic_id = results.first["id"]
           redirect "/topics/#{topic_id}"
         else
@@ -193,7 +193,9 @@ module Forum
 ########EDIT TOPIC#########
     patch '/topics/:topic_id' do
       message = @markdown.render(params[:message])
-      $db.exec_params("UPDATE topics SET title = $1, message = $2 WHERE id = $3", [params[:title], message, params[:topic_id]])
+      tags = "#{params[:tag]}".gsub(",", "").gsub("#", "")
+      binding.pry
+      $db.exec_params("UPDATE topics SET title = $1, message = $2, tag = $4 WHERE id = $3", [params[:title], message, params[:topic_id], tags])
       redirect "/topics/#{params[:topic_id]}"
     end
   ######DELETE TOPIC######
@@ -267,11 +269,14 @@ module Forum
 #########available to anyone################
     get '/topics' do
       @topics = $db.exec("SELECT topics.*,count(comments.id) AS num_comments FROM topics LEFT JOIN comments ON comments.topic_id = topics.id GROUP BY topics.id ORDER BY topics.num_votes DESC");
+      binding.pry
       erb :topics
     end
 ###########TOPICS BY THE TAG#################
     get "/topics/all/:topic_tag" do
-      @topics = $db.exec_params("SELECT topics.*,count(comments.id) AS num_comments FROM topics LEFT JOIN comments ON comments.topic_id = topics.id WHERE topics.tag = $1 GROUP BY topics.id ORDER BY topics.num_votes DESC",[params[:topic_tag]]);
+      binding.pry
+      @tag = '%#{params[:topic_tag]}%'
+      @topics = $db.exec_params("SELECT topics.*,count(comments.id) AS num_comments FROM topics LEFT JOIN comments ON comments.topic_id = topics.id WHERE topics.tag LIKE $1 GROUP BY topics.id ORDER BY topics.num_votes DESC",['%' + params[:topic_tag] + '%']);
       erb :topics_tag
     end
 ###########LOG OUT########################

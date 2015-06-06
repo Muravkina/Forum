@@ -2,7 +2,9 @@
   <label for="title">Title</label>
   <input type="text" name="title" id="title" value="<%= @title %>">
   <label for="message">Text</label>
-  <textarea id="message" name="message" ></textarea>
+  <textarea id="message" name="message"></textarea>
+  <label for="tags">Tags</label>
+  <input type="text" name="tags" id="tags">
   <input type="submit" value="Post topic">
 </form>
 <p><%= @empty_message %></p>

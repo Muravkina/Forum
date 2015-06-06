@@ -4,6 +4,8 @@
   <input type="text" name="title" id="title">
   <label for="message">Text</label>
   <textarea name="message" id="message"></textarea>
+  <label for="tag">Tags</label>
+  <input type="text" name="tag" id="tag">
   <input type="submit" value="Edit topic">
 </form>
 <form method="POST" action="/topics/<%= @topic_id %>">

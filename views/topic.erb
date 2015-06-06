@@ -7,10 +7,24 @@
 <h3><%= @topic['created_at'] %></h3>
 <p><%= @topic['message'] %></p>
 <a href="/topics/<%= @topic_id %>/edit"><%= @edit_topic%></a>
-<p><a href="/topics/all/<%= @topic['tag'] %>"><%= @topic['tag'] %></a></p>
+<% @topic['tag'].split.each do |t| %>
+<p><a href="/topics/all/<%= t %>"><%= t %></a></p>
+<% end %>
 <p><%= @topic_author %></p>
 <p><%= @num_comments %></p>
-<a href="/topics/<%= @topic_id %>/comments/new">Leave comment</a>
+<p class="leave_comment">Leave comment</p>
+<div class="leave_comment">
+
+  <form method="POST" action="/topics/<%= @topic_id %>/comments">
+    <label for="subject">Subject</label>
+    <input type="text" name="subject" id="subject" value ="<%= @subject %>" >
+    <label for="message">Comment</label>
+    <textarea name="message" id="message"></textarea>
+    <input type="submit" value="Post comment" id="post_comment">
+  </form>
+<p><%= @empty_message %></p>
+</div>
+
 <% @comments.each do |comment| %>
  <p><%= comment["subject"] %></p>
  <p><%= comment["created_at"] %></p>

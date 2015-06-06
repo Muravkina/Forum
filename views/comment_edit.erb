@@ -8,7 +8,7 @@
   <input type="text" name="subject" id="subject">
   <label for="message">Comment</label>
   <textarea name="message" id="message"></textarea>
-  <input type="submit" value="Editn comment">
+  <input type="submit" value="Edit comment">
 </form>
 <form method="POST" action="/topics/<%= @topic_id %>/comments/<%= @comment_id %>">
   <input type="hidden" name="_method" value="DELETE">
