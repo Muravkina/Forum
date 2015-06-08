@@ -1,14 +1,14 @@
 <h1>Create new topic</h1>
 <div class="new_topic">
-<form method="POST" action="/topics">
-  <label for="title">Title</label>
-  <input type="text" name="title" id="title" value="<%= @title %>">
-  <label for="message">Text</label>
-  <textarea id="message" name="message"></textarea>
-  <label for="tags">Tags</label>
-  <input type="text" name="tags" id="tags">
-  <input type="submit" value="Post topic">
-</form>
-<p class="empty"><%= @empty_message %></p>
-<p class="empty"><%= @empty_title %></p>
+  <form method="POST" action="/topics">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" value="<%= @title %>">
+    <label for="message">Text</label>
+    <textarea id="message" name="message"></textarea>
+    <label for="tags">Tags</label>
+    <input type="text" name="tags" id="tags">
+    <input type="submit" value="Post topic">
+  </form>
+  <p class="empty"><%= @empty_message %></p>
+  <p class="empty"><%= @empty_title %></p>
 </div>

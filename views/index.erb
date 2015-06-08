@@ -8,35 +8,35 @@
       <div class = "name">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="name">
-      </div>
+      </div><!--name-->
       <div class="email">
         <label for="email">Email</label>
         <input type="text" id="email" name="email" placeholder="email">
-      </div>
+      </div><!--email-->
       <div class="passsword">
         <label for="password">Password</label>
         <input type="password" id="password" name="password" placeholder="password">
-      </div>
+      </div><!--password-->
       <div class="repeat_password">
         <label for="repeat_password">Repeat password</label>
         <input type="password" name="repeat_password" id="repeat_password" placeholder="repeat password">
-      </div>
+      </div><!--repeat_password-->
       <input type="submit" value="Sign Up">
     </form>
-  </div>
-<div class="log_in">
-  <h3>Already a member?</h3>
-  <p> <%= @message %>
-  <form method="POST" action="/users/login">
-  <div class="email">
-    <label for="email">Email</label>
-    <input type="text" id="email" name="email" placeholder="email">
-  </div>
-  <div class="password">
-    <label type="password">Password</label>
-    <input type="password" id="password" name="password" placeholder="password">
-    </div>
+  </div><!--sign_up-->
+  <div class="log_in">
+    <h3>Already a member?</h3>
+    <p> <%= @message %>
+    <form method="POST" action="/users/login">
+    <div class="email">
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" placeholder="email">
+    </div><!--email-->
+    <div class="password">
+      <label type="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="password">
+    </div><!--password-->
     <input type="submit" value="Log In">
-  </form>
-</div>
-</div>
+    </form>
+  </div><!--log_in-->
+</div><!--welcome page-->

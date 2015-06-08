@@ -1,7 +1,3 @@
-
-*{
-  margin: 0;
-}
 html {
   height: 100%;
 }
@@ -110,7 +106,6 @@ div.leave_comment textarea {
   width: 500px;
   height: 150px;
 }
-
 footer {
   background-image: url(/img/footer.jpg);
   text-align: center;
@@ -120,7 +115,6 @@ footer {
   height: 50px;
   border-top: 2px solid rgb(119, 118, 116);
 }
-
 footer p {
   margin-top: 1%;
   margin-bottom: 1%;
@@ -137,19 +131,16 @@ header a {
   font-size: 18px;
   font-weight: bold;
 }
-
 header .home{
   position: absolute;
   top: 195px;
   right: 330px;
 }
-
- header .log_out {
+header .log_out {
   position: absolute;
   top: 195px;
   right: 215px;
- }
-
+}
 header .profile_button {
   display: inline-block;
   position: absolute;
@@ -159,7 +150,6 @@ header .profile_button {
 header .profile_button img {
   display: inline;
 }
-
 header .profile_button:hover, header .home:hover {
   text-decoration: underline;
 }
@@ -224,7 +214,6 @@ header .profile_button:hover, header .home:hover {
 margin-left: 2%;
 width: 40%;
 }
-
 .user_topics td {
   padding-right: 13%;
   padding-bottom: 2%;
@@ -238,7 +227,6 @@ width: 40%;
 .user_topics p a{
   text-decoration: underline;
 }
-
 .new_topic {
   background-image: url(/img/bg_brighter.jpg);
   overflow: auto;
@@ -307,7 +295,6 @@ width: 40%;
   margin-right: 15px;
   clear: right;
 }
-
 .topic_tag {
   color: rgb(150, 150, 150);
 }
@@ -355,7 +342,6 @@ p.leave_comment:hover {
   top: -23px;
   left: 120px;
 }
-
 .topics_table {
   width: 1150px;
   margin: 0 auto;
@@ -404,7 +390,6 @@ p.leave_comment:hover {
 .edit_profile .submit {
   margin-right: 15px;
 }
-
 .edit_profile {
   background-image: url(/img/bg_brighter.jpg);
   padding: 20px;

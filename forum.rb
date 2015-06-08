@@ -26,22 +26,13 @@ module Forum
     end
 
     def get_geolocation
-      url = "http://ipinfo.io/json"
+      url = "http://ipinfo.io/#{request.ip}json"
       response = RestClient.get(url)
       @data = JSON.parse(response)
     end
 
     def not_empty? (title)
       !title.nil? && title != ""
-    end
-
-    class Comment
-      def self.parent(id)
-       @root_comments = $db.exec_params("SELECT * FROM comments WHERE id = $1", [id])
-      end
-      def self.children(id)
-        $db.exec_params("SELECT * WHERE comment_id = $1",[id])
-      end
     end
 
     before do
@@ -258,7 +249,7 @@ module Forum
         user_id = @topic["user_id"]
         @topic_author = $db.exec_params("SELECT * FROM users WHERE id = $1", [user_id]).first["name"]
         @user_img = $db.exec_params("SELECT * FROM users WHERE id = $1", [user_id]).first["img_url"]
-        @comments = $db.exec_params("SELECT comments.*, users.name AS comment_author FROM comments JOIN users ON users.id = comments.user_id WHERE comments.topic_id = $1", [@topic_id])
+        @comments = $db.exec_params("SELECT comments.*, users.name AS comment_author, users.img_url AS author_img FROM comments JOIN users ON users.id = comments.user_id WHERE comments.topic_id = $1", [@topic_id])
         if user_id == current_user
           @edit_topic = "Edit"
         end
@@ -267,7 +258,6 @@ module Forum
           redirect "/topics/#{@topic_id}"
         else
           @empty_message = "Don't forget to add the comment"
-
           erb :topic
         end
       else
@@ -281,7 +271,7 @@ module Forum
         @topic_id = params[:topic_id]
         @topic = $db.exec_params("SELECT * FROM topics WHERE id = $1", [@topic_id]).first
         @topic_author = $db.exec_params("SELECT users.* FROM users JOIN topics ON topics.user_id = users.id WHERE topics.id = $1",[@topic_id]).first["name"];
-
+        @uthor_comment = $db.exec_params("SELECT * FROM users WHERE COMMENT_ID = $1", [@comment_id]).fisrt['img_url']
         @user_img = $db.exec_params("SELECT users.* FROM users JOIN topics ON topics.user_id = users.id WHERE topics.id = $1",[@topic_id]).first["img_url"];
         @comment = $db.exec_params("SELECT * FROM comments WHERE id = $1", [@comment_id]).first
         erb :comment_edit
@@ -330,21 +320,20 @@ module Forum
       session[:user_id] = nil
       redirect '/index'
     end
-
+############UPVOTE#############
     patch '/topics/:topic_id/upvote' do
       author = $db.exec_params("SELECT user_id FROM topics WHERE id = $1", [params[:topic_id]]).first['user_id']
       if current_user != author
-      $db.exec_params("UPDATE topics SET num_votes = (num_votes + 1) WHERE id = $1", [params[:topic_id]])
-    end
+        $db.exec_params("UPDATE topics SET num_votes = (num_votes + 1) WHERE id = $1", [params[:topic_id]])
+      end
       redirect  "/topics/#{params[:topic_id]}"
     end
-
-       patch '/topics/:topic_id/downvote' do
+##########DOWN VOTE################
+    patch '/topics/:topic_id/downvote' do
       author = $db.exec_params("SELECT user_id FROM topics WHERE id = $1", [params[:topic_id]]).first['user_id']
       if current_user != author
-      $db.exec_params("UPDATE topics SET num_votes = (num_votes - 1) WHERE id = $1", [params[:topic_id]])
-
-    end
+        $db.exec_params("UPDATE topics SET num_votes = (num_votes - 1) WHERE id = $1", [params[:topic_id]])
+      end
       redirect  "/topics/#{params[:topic_id]}"
     end
 

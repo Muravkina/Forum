@@ -12,33 +12,33 @@
 </head>
 <body>
   <header>
-        <div class="home">
-        <img src="/img/topics.png" width="20px">
-        <a href="/topics">All topics</a>
-        </div>
-      <% if logged_in? %>
-        <% if request.path != "/users/#{current_user}" %>
+    <div class="home">
+      <img src="/img/topics.png" width="20px" alt="Topic Icon">
+      <a href="/topics">All topics</a>
+    </div><!--home-->
+    <% if logged_in? %>
+      <% if request.path != "/users/#{current_user}" %>
         <div class="profile_button">
-        <img src="/img/user_icon.png" width="20px">
-          <a  href="/users/<%=current_user%>">Profile</a>
-        <% end %>
-        </div>
+          <img src="/img/user_icon.png" width="20px">
+          <a  href="/users/<%=current_user%>" alt="profile icon">Profile</a>
+      <% end %>
+    </div><!--home-->
         <form class="log_out" method="POST" action='/users/login'>
           <input type="hidden" name="_method" value="DELETE">
           <input type="submit" value="Log Out">
        </form>
-       <% else %>
-        <div class="profile_button">
-          <a href="/index">Home</a>
-        </div>
-      <% end %>
+    <% else %>
+      <div class="profile_button">
+        <a href="/index">Home</a>
+      </div><!--profile_button-->
+    <% end %>
   </header>
     <div class="container">
       <%= yield %>
-  </div><!--container-->
-
+    </div><!--container-->
   <footer>
     <p>&copy; Muravkina 2015</p>
   </footer>
-  <script src="/scripts/main.js" type="text/javascript"></script></body>
+  <script src="/scripts/main.js" type="text/javascript"></script>
+</body>
 </html>

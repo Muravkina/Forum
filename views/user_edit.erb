@@ -3,32 +3,31 @@
 <table>
 <form method = "POST" action="/users">
   <input type="hidden" name="_method" value="PATCH">
-
   <dt>
-  <label for="img_url">Image Url</label>
+    <label for="img_url">Image Url</label>
   </dt>
   <dd>
-  <input type="text" name="img_url" id="img_url">
+    <input type="text" name="img_url" id="img_url">
   </dd>
   <dt>
-  <label for="name">Name</label>
+    <label for="name">Name</label>
   </dt>
   <dd>
-  <input type="text" name="name" id="name" value= "<%= @name %>">
+    <input type="text" name="name" id="name" value= "<%= @name %>">
   </dd>
   <dt>
-  <label for="email">Email</label>
+    <label for="email">Email</label>
   </dt>
   <dd>
-  <input type="text" name="email" id="email" value="<%= @email %>">
+    <input type="text" name="email" id="email" value="<%= @email %>">
   </dd>
   <dt>
-  <label for="password">Password</label>
+    <label for="password">Password</label>
   </dt>
   <dd>
-  <input type="password" name="password" id="password">
+    <input type="password" name="password" id="password">
   </dd>
-  <input class = "submit" type="submit" value="Edit user">
+    <input class = "submit" type="submit" value="Edit user">
 </form>
 <form method="POST" action="/users/<%= current_user %>/delete">
   <input type="hidden" name="_method" value="PATCH">
