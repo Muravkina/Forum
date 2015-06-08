@@ -1,17 +1,25 @@
-<h1><%= @topic['title'] %></h1>
-<form method="POST" action="/topics/<%= @topic_id %>/tag">
+<h1 class="topic_name"><%= @topic['title'] %></h1>
+<p class="vote_num"><%= @topic['num_votes'] %></p>
+<form class ="vote" method="POST" action="/topics/<%= @topic_id %>/tag">
   <input type="hidden" name="_method" value="PATCH">
   <input type="submit" value="vote">
 </form>
-<p><%= @topic['num_votes'] %></p>
-<h3><%= @topic['created_at'] %></h3>
-<p><%= @topic['message'] %></p>
-<a href="/topics/<%= @topic_id %>/edit"><%= @edit_topic%></a>
-<% @topic['tag'].split.each do |t| %>
-<p><a href="/topics/all/<%= t %>"><%= t %></a></p>
-<% end %>
-<p><%= @topic_author %></p>
-<p><%= @num_comments %></p>
+<div class = "topic">
+  <div class="topic_author">
+    <img src=<%= @user_img %> width="100px">
+    <p><%= @topic_author %></p>
+  </div><!--topic_author-->
+  <div class="topic_text">
+    <p class="time"><%= @topic['created_at'] %>
+    <a href="/topics/<%= @topic_id %>/edit"><%= @edit_topic%></a></p>
+    <p><%= @topic['message'] %></p>
+    <% @topic['tag'].gsub(",", "").gsub("#", "").split.each do |t| %>
+      <a class="topic_tags" href="/topics/all/<%= t %>"><%= t %></a>
+    <% end %>
+    <p><span class="topic_tag">Comments: </span><%= @num_comments %></p>
+    </div><!--topic_text-->
+</div><!--topic-->
+<p><%= @empty_message %></p>
 <p class="leave_comment">Leave comment</p>
 <div class="leave_comment">
 
@@ -22,15 +30,20 @@
     <textarea name="message" id="message"></textarea>
     <input type="submit" value="Post comment" id="post_comment">
   </form>
-<p><%= @empty_message %></p>
 </div>
-
 <% @comments.each do |comment| %>
- <p><%= comment["subject"] %></p>
- <p><%= comment["created_at"] %></p>
- <p><%= comment["message"] %></p>
+  <div class = "all_comments">
+  <div class="topic_author">
+  <img src="<%= comment["author_img"] %>" width="100px">
  <p><%= comment["comment_author"] %></p>
+ </div><!--topic_author-->
+ <div class = "topic_text">
+ <p class="time"><%= comment["created_at"] %>
+  <a href="/topics/<%= @topic_id %>/comments/<%= comment["id"] %>/edit">Edit</a></p>
+ <p class="comment_subject"><%= comment["subject"] %></p>
+ <p><%= comment["message"] %></p>
  <% if current_user == comment["user_id"] %>
-  <a href="/topics/<%= @topic_id %>/comments/<%= comment["id"] %>/edit">Edit</a>
  <% end %>
 <% end %>
+</div><!--topic_text-->
+</div><!--topic-->

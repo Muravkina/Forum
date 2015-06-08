@@ -1,10 +1,19 @@
-<!-- <img> -->
-<h1><%= @user_name %></h1>
-<h2><%= @user_email %></h2>
-<p>Topics total: <%= @user_num_topics %></p>
-<p>Comments total: <%= @user_num_topics %></p>
-<a href="/users/<%= current_user %>/edit">edit profile</a>
-<h1>Your Topics</h1>
+
+<h1 class="viewing_profile">Viewing profile:</h1>
+  <div class="profile_info">
+  <img class="profile_img" src=<%= @user_img %> width="100px">
+    <p><span class="profile_tag">Name:</span> <%= @user_name %> [ <a href="/users/<%= current_user %>/edit">edit profile</a> ]</p>
+    <p><span class="profile_tag">Email:</span> <%= @user_email %></p>
+  </div><!--profile-info-->
+  <div class="profile_statistics">
+    <h1>USER STATISTICS</h1>
+    <dt><span class="profile_tag">Topics total:</span> </dt>
+    <dd><%= @user_num_topics %></dd>
+    <dt><span class="profile_tag">Comments total:</span> </dt>
+    <dd><%= @user_num_comments %></dd>
+  </div><!--profile_statistics-->
+<div class="user_topics">
+<h1>USER'S TOPICS:</h1>
 <table>
 <tr>
   <td>Topic</td>
@@ -21,4 +30,5 @@
   <% end %>
   <% end %>
 </table>
-<a href="/topics/<%= current_user %>/new">create new</a>
+<p>[ <a href="/topics/<%= current_user %>/new">create new</a> ]</p>
+</div>

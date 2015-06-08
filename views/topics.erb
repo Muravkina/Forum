@@ -1,19 +1,20 @@
-<table>
+<table class="topics_table">
   <tr>
-    <td>Topic</td>
+    <td>Topic [
+  <% if logged_in? %>
+    <a href="/topics/<%= current_user %>/new">create new</a>
+  <% end %> ]</td>
     <td>Votes</td>
     <td>Comments</td>
   </tr>
   <% if @topics != nil
     @topics.each do |topic| %>
     <tr>
-      <td><a href="/topics/<%= topic['id'] %>"><%= topic['title'] %></a></td>
+      <td class="table_name"><a href="/topics/<%= topic['id'] %>"><%= topic['title'] %></a></td>
       <td><%= topic['num_votes'] %></td>
       <td><%= topic['num_comments'] %></td>
     </tr>
     <% end %>
   <% end %>
 </table>
-  <% if logged_in? %>
-    <a href="/topics/<%= current_user %>/new">create new</a>
-  <% end %>
+

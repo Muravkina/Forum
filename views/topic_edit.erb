@@ -1,14 +1,17 @@
+<h1>Edit topic</h1>
+<div class="new_topic">
 <form method="POST" action="/topics/<%= @topic_id %>">
   <input type="hidden" name="_method" value = "PATCH">
   <label for="title">Title</label>
-  <input type="text" name="title" id="title">
+  <input type="text" name="title" id="title" value="<%= @topic['title'] %>">
   <label for="message">Text</label>
-  <textarea name="message" id="message"></textarea>
+  <textarea name="message" id="message"><%= @topic['message'].gsub("<p>", "").gsub("</p>", "") %></textarea>
   <label for="tag">Tags</label>
-  <input type="text" name="tag" id="tag">
+  <input type="text" name="tag" id="tag" value="<%= @topic['tag'] %>">
   <input type="submit" value="Edit topic">
 </form>
 <form method="POST" action="/topics/<%= @topic_id %>">
   <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Topic">
+  <input class=" delete" type="submit" value="Delete Topic">
 </form>
+</div>

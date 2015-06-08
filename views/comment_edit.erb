@@ -1,17 +1,32 @@
-<h1><%= @title %></h1>
-<h3><%= @topic_author %></h3>
+<h1 class="topic_name"><%= @title %></h1>
+<div class="topic">
+<div class="topic_author">
+  <img src="<%= @user_img %>" width="100px">
+  <h3><%= @topic_author %></h3>
+</div><!--topic_author-->
+<div class="topic_text">
+    <p class="time"><%= @topic['created_at'] %>
+    <a href="/topics/<%= @topic_id %>/edit"><%= @edit_topic%></a></p>
+    <p><%= @topic['message'] %></p>
+    <% @topic['tag'].gsub(",", "").gsub("#", "").split.each do |t| %>
+      <a class="topic_tags" href="/topics/all/<%= t %>"><%= t %></a>
+    <% end %>
+    </div><!--topic_text-->
+</div><!--topic-->
 <p><%= @message %></p>
-<h1><%= @user_name %></h1>
-<form method="POST" action="/topics/<%= @topic_id %>/comments/<%= @comment_id %>">
+<h1>Edit comment</h1>
+<div class="new_topic">
+<form method="POST" action="/topics/<%= @topic_id %>/comments/<%= @comment_id %>/edit">
   <input type="hidden" name="_method" value="PATCH">
   <label for="subject">Subject</label>
-  <input type="text" name="subject" id="subject">
+  <input type="text" name="subject" id="subject" value="<%= @comment['subject'] %>">
   <label for="message">Comment</label>
-  <textarea name="message" id="message"></textarea>
+  <textarea name="message" id="message"><%= @comment['message'].gsub("<p>", "").gsub("</p>", "") %></textarea>
   <input type="submit" value="Edit comment">
 </form>
-<form method="POST" action="/topics/<%= @topic_id %>/comments/<%= @comment_id %>">
+<form method="POST" action="/topics/<%= @topic_id %>/comments/<%= @comment_id %>/edit">
   <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Comment">
+  <input class = "delete" type="submit" value="Delete comment">
 </form>
 <p><%= @empty_message %></p>
+</div>

@@ -1,3 +1,368 @@
+
+*{
+  margin: 0;
+}
+html {
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-image: url(/img/bg.jpg);
+}
+header {
+  height: 245px;
+  background-image: url(/img/header.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.container {
+  width: 1170px;
+  margin: 0 auto -40px;
+  margin-top: 30px;
+  min-height:70%;
+}
+.welcome {
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 40px;
+  color: rgb(25, 79, 119);
+}
+.all_topics {
+  text-align: center;
+  display: block;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  margin: -5px;
+}
+a.all_topics {
+  text-decoration: none;
+}
+.welcome_page {
+  background-image: url(/img/bg_brighter.jpg);
+  overflow: auto;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 2%;
+}
+.sign_up {
+  float: left;
+  padding-left: 5%;
+  margin-top: 2%;
+  padding-right: 12%;
+  margin-bottom: 2%;
+  border-right: 2px solid black;
+}
+.sign_up input{
+  display: inline-block;
+  margin-top: 2%;
+}
+.sign_up .name input{
+  margin-left: 85px;
+}
+.sign_up .email input {
+  margin-left: 88px;
+}
+.sign_up .passsword input {
+  margin-left: 58px;
+}
+.sign_up .repeat_password input {
+  margin-left: 3px;
+}
+.log_in {
+  float: left;
+  padding-left: 12%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.log_in input {
+  margin-top: 2%;
+  display: inline-block;
+}
+.log_in .email input {
+  margin-left: 49px;
+}
+.log_in .password input {
+  margin-left: 20px;
+}
 div.leave_comment {
+  background-image: url(/img/bg_brighter.jpg);
   display: none;
+  padding: 10px;
+}
+div.leave_comment input, div.leave_comment textarea {
+  display: block;
+  margin-bottom: 10px;
+}
+div.leave_comment input[type="text"] {
+  width: 500px;
+}
+div.leave_comment textarea {
+  width: 500px;
+  height: 150px;
+}
+
+
+footer {
+  background-image: url(/img/footer.jpg);
+  text-align: center;
+  clear: both;
+  margin-top: 3%;
+  width: 100%;
+  height: 50px;
+  border-top: 2px solid rgb(119, 118, 116);
+}
+
+footer p {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  font-family: 'Lora', serif;
+  color: rgb(210, 210, 210);
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+header {
+  font-family: 'Lora', serif;
+  color: rgb(49, 130, 176);
+  font-size: 15px;
+}
+header a {
+  text-decoration: none;
+  color: rgb(235, 235, 235);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+header .home{
+  position: absolute;
+  top: 167px;
+  right: 330px;
+}
+ header .log_out {
+  position: absolute;
+  top: 167px;
+  right: 215px;
+ }
+
+header .profile_button {
+  display: inline-block;
+  position: absolute;
+  top: 167px;
+  right: 480px;
+}
+header .profile_button img {
+  display: inline;
+}
+.profile_info {
+  width: 100%;
+  background-image: url(/img/bg_brighter.jpg);
+  float:left;
+}
+.profile_img {
+  float: left;
+  padding: 1%;
+}
+.profile_info p {
+  margin-left: 20%;
+}
+.profile_tag{
+  color: rgb(150, 150, 150);
+}
+.edit_profile {
+  display: inline-block;
+}
+.profile_statistics {
+  clear: both;
+  width: 100%;
+  background-image: url(/img/bg_brighter.jpg);
+  margin-top: 16%;
+  padding-bottom: 1%;
+}
+.profile_statistics h1 {
+  width: 40%;
+  font-size: 12px;
+  border-bottom: 1px solid black;
+  padding-top: 1%;
+  padding-bottom: 0.3%;
+  margin-left: 2%;
+}
+.profile_statistics dt {
+  display: inline-block;
+  margin-left: 2%;
+}
+.profile_statistics dd {
+  display: inline-block;
+  margin-left: 2%;
+  font-size: 14px;
+  margin-right: 5%;
+}
+.user_topics{
+  clear:both;
+  margin-top: 2%;
+  background-image: url(/img/bg_brighter.jpg);
+  overflow: auto;
+}
+.user_topics h1 {
+  width: 40%;
+  font-size: 15px;
+  border-bottom: 1px solid black;
+  padding-top: 1%;
+  padding-bottom: 0.3%;
+  margin-left: 2%;
+}
+.user_topics table {
+margin-left: 2%;
+width: 40%;
+}
+
+.user_topics td {
+  padding-right: 13%;
+  padding-bottom: 2%;
+}
+.user_topics a{
+  text-decoration: none;
+}
+.user_topics p {
+  margin-left: 2%;
+}
+.user_topics p a{
+  text-decoration: underline;
+}
+
+.new_topic {
+  background-image: url(/img/bg_brighter.jpg);
+  overflow: auto;
+  padding-top: 15px;
+}
+.new_topic input, .new_topic textarea, .new_topic label {
+  display: block;
+  margin-left: 2%;
+}
+.new_topic input[type="text"] {
+  width: 80%;
+  margin-bottom: 15px;
+}
+.new_topic textarea {
+  width: 80%;
+  height: 190px;
+  margin-bottom: 15px;
+}
+.topic {
+  background-image: url(/img/bg_brighter.jpg);
+  overflow: auto;
+  margin-top: -20px;
+}
+.topic_name {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 40px;
+  color: rgb(25, 79, 119);
+  margin-top: 20px;
+}
+.vote {
+  display: inline-block;
+  position: relative;
+  top: -26px;
+  left: -14px;
+}
+.vote_num {
+  position:relative;
+  display: inline;
+  left: 65px;
+  top:-26px;
+}
+.topic_author {
+  float: left;
+  margin: 2%;
+  width: 18%;
+}
+.topic_author img {
+  margin: 0 9%;
+}
+.topic_text p.time {
+  border-bottom: 1px solid black ;
+  margin-right: 10px;
+  margin-left: 22%;
+  padding-bottom: 0.5%;
+}
+.topic_text p.time a{
+  margin-left: 770px;
+}
+.topic_text {
+  margin-right: 15px;
+}
+
+.topic_tag {
+  color: rgb(150, 150, 150);
+}
+.topic_tags {
+  margin-right: 5px;
+}
+p.leave_comment {
+  margin-left: 5px;
+}
+p.leave_comment:hover {
+  cursor:pointer;
+  text-decoration: underline;
+  color: rgb(25, 79, 119);
+}
+.all_comments {
+  background-image: url(/img/bg_brighter.jpg);
+  overflow: auto;
+  margin-top: 20px;
+}
+.comment_subject {
+  color: rgb(150, 150, 150);
+}
+.new_topic input[type="submit"] {
+  display: inline;
+}
+.new_topic .delete {
+  position: relative;
+  top: -23px;
+  left: 120px;
+}
+
+.topics_table {
+  width: 1150px;
+  margin: 0 auto;
+}
+.topics_table tr:not(:first-child) {
+  background-image: url(/img/bg_brighter.jpg);
+}
+.topics_table td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgb(210, 209, 205);
+}
+.table_name {
+  width: 900px;
+  padding-left: 20px;
+}
+.table_name a {
+  text-decoration: none;
+  color: black;
+}
+.table_name a:visited{
+  color: rgb(150, 150, 150);
+}
+.edit_profile {
+  width: 80%;
+}
+.edit_profile dt{
+  width: 25%;
+  float: left;
+  margin-bottom: 10px;
+}
+.edit_profile dd {
+  width: 70%;
+  float: left;
+  margin-bottom: 10px;
+}
+.edit_profile input[type="text"], .edit_profile input[type="password"]{
+  width: 300px;
+}
+.edit_profile .submit {
+  margin-right: 15px;
 }

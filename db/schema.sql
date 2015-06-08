@@ -6,7 +6,8 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
   email VARCHAR NOT NULL,
-  password VARCHAR NOT NULL
+  password VARCHAR NOT NULL,
+  img_url VARCHAR DEFAULT '/img/user_icon.png'
 );
 
 CREATE TABLE topics (
