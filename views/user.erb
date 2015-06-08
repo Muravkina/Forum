@@ -2,7 +2,10 @@
 <h1 class="viewing_profile">Viewing profile:</h1>
 <div class="profile_info">
   <img class="profile_img" src=<%= @user_img %> width="100px" alt="profile picture">
-  <p><span class="profile_tag">Name:</span> <%= @user_name %> [ <a href="/users/<%= current_user %>/edit">edit profile</a> ]</p>
+  <p><span class="profile_tag">Name:</span> <%= @user_name %>
+  <% if logged_in? && is_current_user? %>
+  [ <a href="/users/<%= current_user %>/edit">edit profile</a> ]</p>
+  <% end %>
   <p><span class="profile_tag">Email:</span> <%= @user_email %></p>
 </div><!--profile-info-->
 <div class="profile_statistics">
@@ -30,5 +33,7 @@
       <% end %>
     <% end %>
 </table>
+<% if logged_in? && is_current_user? %>
 <p>[ <a href="/topics/<%= current_user %>/new">create new</a> ]</p>
+<% end %>
 </div><!--user topics-->

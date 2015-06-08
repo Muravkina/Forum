@@ -2,7 +2,7 @@ html {
   height: 100%;
 }
 body {
-  width: 100%;
+  width: 1680px;
   height: 100%;
   overflow: auto;
   background-image: url(/img/background1.jpg);
@@ -11,7 +11,7 @@ header {
   height: 283px;
   background-image: url(/img/header.jpg);
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 1650px;
   font-family: 'Lora', serif;
   color: rgb(49, 130, 176);
   font-size: 15px;
@@ -27,7 +27,11 @@ header {
   text-align: center;
   font-family: 'Permanent Marker', cursive;
   font-size: 40px;
-  color: rgb(25, 79, 119);
+  color: rgb(96,108,136);
+  color: -moz-linear-gradient(left,  rgba(96,108,136,1) 0%, rgba(63,76,107,1) 100%);
+  color: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(96,108,136,1)), color-stop(100%,rgba(63,76,107,1)));
+  color: -webkit-linear-gradient(left,  rgba(96,108,136,1) 0%,rgba(63,76,107,1) 100%);
+
 }
 .all_topics {
   text-align: center;
@@ -127,7 +131,10 @@ footer p {
 header a {
   text-decoration: none;
   letter-spacing: 1px;
-  color: rgb(235, 235, 235);
+  color: rgb(238,238,238);
+  color: -moz-linear-gradient(left,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%);
+  color: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1)));
+  color: -webkit-linear-gradient(left,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%);
   font-size: 18px;
   font-weight: bold;
 }

@@ -11,7 +11,7 @@
 <div class = "topic">
   <div class="topic_author">
     <img src=<%= @user_img %> width="100px" alt="Profile picture">
-    <p><%= @topic_author %></p>
+    <p><a href="/users/<%= @user_id %>"><%= @topic_author %></a></p>
   </div><!--topic_author-->
   <div class="topic_text">
     <p class="time"><span class="profile_tag">Posted on: <%= @topic['created_at'] %></span>

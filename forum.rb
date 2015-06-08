@@ -26,7 +26,7 @@ module Forum
     end
 
     def get_geolocation
-      url = "http://ipinfo.io/#{request.ip}json"
+      url = "http://ipinfo.io/json"
       response = RestClient.get(url)
       @data = JSON.parse(response)
     end
@@ -94,18 +94,14 @@ module Forum
     end
 ##########PROFILE PAGE#############
     get '/users/:id' do
-      if logged_in? && is_current_user?
-        user = $db.exec_params("SELECT users.*,count(comments.id) AS user_num_comments, topics.num_votes FROM users LEFT JOIN comments ON comments.user_id = users.id LEFT JOIN topics ON topics.user_id = users.id WHERE users.id = $1 GROUP BY users.id, topics.id",[current_user]).first;
+        user = $db.exec_params("SELECT users.*,count(comments.id) AS user_num_comments, topics.num_votes FROM users LEFT JOIN comments ON comments.user_id = users.id LEFT JOIN topics ON topics.user_id = users.id WHERE users.id = $1 GROUP BY users.id, topics.id",[params[:id]]).first;
         @user_img = user["img_url"]
         @user_name = user["name"]
         @user_email = user["email"]
         @user_num_comments = user["user_num_comments"]
         @user_num_topics =  $db.exec_params("select count(*) from topics where user_id = $1",[current_user]).first["count"]
-        @topics = $db.exec_params("SELECT topics.*,count(comments.id) AS topic_num_comments FROM topics LEFT JOIN comments ON comments.topic_id = topics.id WHERE topics.user_id = $1 GROUP BY topics.id ORDER BY topics.num_votes DESC", [current_user]);
+        @topics = $db.exec_params("SELECT topics.*,count(comments.id) AS topic_num_comments FROM topics LEFT JOIN comments ON comments.topic_id = topics.id WHERE topics.user_id = $1 GROUP BY topics.id ORDER BY topics.num_votes DESC",[params[:id]]);
         erb :user
-      else
-        denied
-      end
     end
 ############EDIT PROFILE PAGE##############
     get '/users/:id/edit' do
@@ -148,7 +144,8 @@ module Forum
     patch '/users/:user_id/delete' do
         email = ""
         password = ""
-        $db.exec_params("UPDATE users SET email = $1, password = $2 WHERE id = $3",[email, password, params[:user_id]])
+        name = ""
+        $db.exec_params("UPDATE users SET email = $1, password = $2, name = $4 WHERE id = $3",[email, password, params[:user_id], name])
         session[:user_id] = nil
         redirect '/index'
     end
@@ -188,11 +185,11 @@ module Forum
       @topic_id = params[:id]
       @topic = $db.exec_params('SELECT * FROM topics WHERE id = $1', [@topic_id]).first
       @num_comments = $db.exec_params("SELECT count(*) FROM comments WHERE topic_id = $1", [@topic_id]).first["count"]
-      user_id = @topic["user_id"]
-      @user_img = $db.exec_params("SELECT * FROM users WHERE id = $1", [user_id]).first["img_url"]
-      @topic_author = $db.exec_params("SELECT * FROM users WHERE id = $1", [user_id]).first["name"]
+      @user_id = @topic["user_id"]
+      @user_img = $db.exec_params("SELECT * FROM users WHERE id = $1", [@user_id]).first["img_url"]
+      @topic_author = $db.exec_params("SELECT * FROM users WHERE id = $1", [@user_id]).first["name"]
       @comments = $db.exec_params("SELECT comments.*, users.name AS comment_author, users.img_url AS author_img FROM comments JOIN users ON users.id = comments.user_id WHERE comments.topic_id = $1", [@topic_id])
-      if user_id == current_user
+      if @user_id == current_user
         @edit_topic = "Edit"
       end
       if !logged_in?
@@ -271,7 +268,6 @@ module Forum
         @topic_id = params[:topic_id]
         @topic = $db.exec_params("SELECT * FROM topics WHERE id = $1", [@topic_id]).first
         @topic_author = $db.exec_params("SELECT users.* FROM users JOIN topics ON topics.user_id = users.id WHERE topics.id = $1",[@topic_id]).first["name"];
-        @uthor_comment = $db.exec_params("SELECT * FROM users WHERE COMMENT_ID = $1", [@comment_id]).fisrt['img_url']
         @user_img = $db.exec_params("SELECT users.* FROM users JOIN topics ON topics.user_id = users.id WHERE topics.id = $1",[@topic_id]).first["img_url"];
         @comment = $db.exec_params("SELECT * FROM comments WHERE id = $1", [@comment_id]).first
         erb :comment_edit
