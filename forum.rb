@@ -204,6 +204,11 @@ module Forum
       if user_id == current_user
         @edit_topic = "Edit"
       end
+      if !logged_in?
+        @empty_message = "You have to be a member to leave a message"
+      end
+
+
       erb :topic
     end
 #######EDIT TOPIC PAGE#########
@@ -243,25 +248,30 @@ module Forum
       redirect ('/topics')
     end
 ###########ADD COMMENT###############
-    post '/topics/:topic_id/comments' do
-      @subject = params[:subject]
-      text = @markdown.render(params[:message])
+    post '/topics/:topic_id' do
       @topic_id = params[:topic_id]
-      @topic = $db.exec_params('SELECT * FROM topics WHERE id = $1', [@topic_id]).first
-      @num_comments = $db.exec_params("SELECT count(*) FROM comments WHERE topic_id = $1", [@topic_id]).first["count"]
-      user_id = @topic["user_id"]
-      @topic_author = $db.exec_params("SELECT * FROM users WHERE id = $1", [user_id]).first["name"]
-      @comments = $db.exec_params("SELECT comments.*, users.name AS comment_author FROM comments JOIN users ON users.id = comments.user_id WHERE comments.topic_id = $1", [@topic_id])
-      if user_id == current_user
-        @edit_topic = "Edit"
-      end
-      if not_empty?(text)
-        $db.exec_params("INSERT INTO comments (subject, message, user_id, topic_id, created_at) VALUES ($1,$2, $3, $4, CURRENT_DATE)", [@subject, text, current_user, @topic_id]);
-        redirect "/topics/#{@topic_id}"
-      else
-        @empty_message = "Don't forget to add the comment"
+      if logged_in?
+        text = @markdown.render(params[:message])
+        @topic = $db.exec_params('SELECT * FROM topics WHERE id = $1', [@topic_id]).first
+        @subject = params[:subject]
+        @num_comments = $db.exec_params("SELECT count(*) FROM comments WHERE topic_id = $1", [@topic_id]).first["count"]
+        user_id = @topic["user_id"]
+        @topic_author = $db.exec_params("SELECT * FROM users WHERE id = $1", [user_id]).first["name"]
+        @user_img = $db.exec_params("SELECT * FROM users WHERE id = $1", [user_id]).first["img_url"]
+        @comments = $db.exec_params("SELECT comments.*, users.name AS comment_author FROM comments JOIN users ON users.id = comments.user_id WHERE comments.topic_id = $1", [@topic_id])
+        if user_id == current_user
+          @edit_topic = "Edit"
+        end
+        if not_empty?(text)
+          $db.exec_params("INSERT INTO comments (subject, message, user_id, topic_id, created_at) VALUES ($1,$2, $3, $4, CURRENT_DATE)", [@subject, text, current_user, @topic_id]);
+          redirect "/topics/#{@topic_id}"
+        else
+          @empty_message = "Don't forget to add the comment"
 
-        erb :topic
+          erb :topic
+        end
+      else
+        redirect "/topics/#{@topic_id}"
       end
     end
 ##########EDIT COMMENT PAGE##################
@@ -321,10 +331,18 @@ module Forum
       redirect '/index'
     end
 
-    patch '/topics/:topic_id/tag' do
+    patch '/topics/:topic_id/upvote' do
       author = $db.exec_params("SELECT user_id FROM topics WHERE id = $1", [params[:topic_id]]).first['user_id']
       if current_user != author
       $db.exec_params("UPDATE topics SET num_votes = (num_votes + 1) WHERE id = $1", [params[:topic_id]])
+    end
+      redirect  "/topics/#{params[:topic_id]}"
+    end
+
+       patch '/topics/:topic_id/downvote' do
+      author = $db.exec_params("SELECT user_id FROM topics WHERE id = $1", [params[:topic_id]]).first['user_id']
+      if current_user != author
+      $db.exec_params("UPDATE topics SET num_votes = (num_votes - 1) WHERE id = $1", [params[:topic_id]])
 
     end
       redirect  "/topics/#{params[:topic_id]}"

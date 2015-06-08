@@ -9,7 +9,7 @@
   </tr>
   <% if @topics != nil
     @topics.each do |topic| %>
-    <tr>
+    <tr class="topic_row">
       <td class="table_name"><a href="/topics/<%= topic['id'] %>"><%= topic['title'] %></a></td>
       <td><% if topic['num_votes'] == nil %>
           <%= 0 %>

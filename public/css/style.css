@@ -9,13 +9,17 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-image: url(/img/bg.jpg);
+  background-image: url(/img/background1.jpg);
 }
 header {
-  height: 245px;
+  height: 283px;
   background-image: url(/img/header.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
+  font-family: 'Lora', serif;
+  color: rgb(49, 130, 176);
+  font-size: 15px;
+  font-family: 'Krona One', sans-serif;
 }
 .container {
   width: 1170px;
@@ -44,40 +48,44 @@ a.all_topics {
   overflow: auto;
   width: 100%;
   margin: 0 auto;
-  margin-top: 2%;
+  margin-top: 15px;
 }
 .sign_up {
   float: left;
   padding-left: 5%;
-  margin-top: 2%;
+  margin-top: 15px;
   padding-right: 12%;
   margin-bottom: 2%;
   border-right: 2px solid black;
 }
 .sign_up input{
   display: inline-block;
-  margin-top: 2%;
+  margin-top: 12px;
 }
 .sign_up .name input{
   margin-left: 85px;
+  width: 240px;
 }
 .sign_up .email input {
   margin-left: 88px;
+  width: 240px;
 }
 .sign_up .passsword input {
   margin-left: 58px;
+  width: 240px;
 }
 .sign_up .repeat_password input {
   margin-left: 3px;
+  width: 240px;
 }
 .log_in {
   float: left;
   padding-left: 12%;
-  margin-top: 2%;
+  margin-top: 15px;
   margin-bottom: 2%;
 }
 .log_in input {
-  margin-top: 2%;
+  margin-top: 12px;
   display: inline-block;
 }
 .log_in .email input {
@@ -103,7 +111,6 @@ div.leave_comment textarea {
   height: 150px;
 }
 
-
 footer {
   background-image: url(/img/footer.jpg);
   text-align: center;
@@ -123,13 +130,9 @@ footer p {
   font-weight: bold;
   letter-spacing: 1px;
 }
-header {
-  font-family: 'Lora', serif;
-  color: rgb(49, 130, 176);
-  font-size: 15px;
-}
 header a {
   text-decoration: none;
+  letter-spacing: 1px;
   color: rgb(235, 235, 235);
   font-size: 18px;
   font-weight: bold;
@@ -137,23 +140,28 @@ header a {
 
 header .home{
   position: absolute;
-  top: 167px;
+  top: 195px;
   right: 330px;
 }
+
  header .log_out {
   position: absolute;
-  top: 167px;
+  top: 195px;
   right: 215px;
  }
 
 header .profile_button {
   display: inline-block;
   position: absolute;
-  top: 167px;
-  right: 480px;
+  top: 195px;
+  right: 510px;
 }
 header .profile_button img {
   display: inline;
+}
+
+header .profile_button:hover, header .home:hover {
+  text-decoration: underline;
 }
 .profile_info {
   width: 100%;
@@ -253,6 +261,7 @@ width: 40%;
   background-image: url(/img/bg_brighter.jpg);
   overflow: auto;
   margin-top: -20px;
+  height: 100%;
 }
 .topic_name {
   font-family: 'Permanent Marker', cursive;
@@ -269,28 +278,34 @@ width: 40%;
 .vote_num {
   position:relative;
   display: inline;
-  left: 65px;
-  top:-26px;
+  left: 135px;
+  top:-40px;
 }
 .topic_author {
   float: left;
-  margin: 2%;
   width: 18%;
+  height: 100%;
 }
 .topic_author img {
-  margin: 0 9%;
+
+  padding:0 27%;
+  padding-top: 30%;
+}
+.topic_author p{
+  text-align: center;
 }
 .topic_text p.time {
   border-bottom: 1px solid black ;
   margin-right: 10px;
-  margin-left: 22%;
+  margin-left: 207px;
   padding-bottom: 0.5%;
 }
 .topic_text p.time a{
-  margin-left: 770px;
+  margin-left: 733px;
 }
 .topic_text {
   margin-right: 15px;
+  clear: right;
 }
 
 .topic_tag {
@@ -300,20 +315,37 @@ width: 40%;
   margin-right: 5px;
 }
 p.leave_comment {
-  margin-left: 5px;
+  margin-left: 2px;
+  display: inline-block;
+  text-shadow: 1px 1px 3px #4f4d4f;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 20px;
+  background: #969096;
+  background-image: -webkit-linear-gradient(top, #969096, #615e61);
+  background-image: -moz-linear-gradient(top, #969096, #615e61);
+  background-image: -ms-linear-gradient(top, #969096, #615e61);
+  background-image: -o-linear-gradient(top, #969096, #615e61);
+  background-image: linear-gradient(to bottom, #969096, #615e61);
+  padding: 9px 15px 8px 16px;
+  text-decoration: none;
+  cursor: pointer;
 }
 p.leave_comment:hover {
-  cursor:pointer;
-  text-decoration: underline;
-  color: rgb(25, 79, 119);
+  background: #a8a8a8;
+  text-decoration: none;
 }
 .all_comments {
   background-image: url(/img/bg_brighter.jpg);
   overflow: auto;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .comment_subject {
-  color: rgb(150, 150, 150);
+  color: rgb(80, 80, 80);
 }
 .new_topic input[type="submit"] {
   display: inline;
@@ -328,24 +360,30 @@ p.leave_comment:hover {
   width: 1150px;
   margin: 0 auto;
 }
-.topics_table tr:not(:first-child) {
-  background-image: url(/img/bg_brighter.jpg);
+.topic_row {
+  background-color: rgb(236, 235, 233);
 }
 .topics_table td {
   padding-top: 15px;
   padding-bottom: 15px;
-  border-bottom: 2px solid rgb(210, 209, 205);
+  border-bottom: 5px solid rgb(210, 209, 205);
 }
 .table_name {
   width: 900px;
   padding-left: 20px;
+}
+.topic_row:hover {
+  background-color: white;
 }
 .table_name a {
   text-decoration: none;
   color: black;
 }
 .table_name a:visited{
-  color: rgb(150, 150, 150);
+  color: rgb(100, 100, 100);
+}
+.table_name a:hover {
+  text-decoration: underline;
 }
 .edit_profile {
   width: 80%;
@@ -358,7 +396,7 @@ p.leave_comment:hover {
 .edit_profile dd {
   width: 70%;
   float: left;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .edit_profile input[type="text"], .edit_profile input[type="password"]{
   width: 300px;
@@ -366,3 +404,13 @@ p.leave_comment:hover {
 .edit_profile .submit {
   margin-right: 15px;
 }
+
+.edit_profile {
+  background-image: url(/img/bg_brighter.jpg);
+  padding: 20px;
+}
+.empty {
+  margin-left: 25px;
+}
+
+

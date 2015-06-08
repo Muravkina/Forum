@@ -6,12 +6,16 @@
   <link rel="stylesheet" href="/css/style.css">
   <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+ <link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'>
   <script src="/scripts/jquery-2.1.4.js" type="text/javascript"></script>
   <script src="Chart.js"></script>
 </head>
 <body>
   <header>
+        <div class="home">
+        <img src="/img/topics.png" width="20px">
+        <a href="/topics">All topics</a>
+        </div>
       <% if logged_in? %>
         <% if request.path != "/users/#{current_user}" %>
         <div class="profile_button">
@@ -19,18 +23,18 @@
           <a  href="/users/<%=current_user%>">Profile</a>
         <% end %>
         </div>
-        <div class="home">
-        <img src="/img/topics.png" width="20px">
-        <a href="/topics">All topics</a>
-        </div>
         <form class="log_out" method="POST" action='/users/login'>
           <input type="hidden" name="_method" value="DELETE">
           <input type="submit" value="Log Out">
        </form>
+       <% else %>
+        <div class="profile_button">
+          <a href="/index">Home</a>
+        </div>
       <% end %>
   </header>
     <div class="container">
-    <%= yield %>
+      <%= yield %>
   </div><!--container-->
 
   <footer>

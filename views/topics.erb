@@ -1,15 +1,15 @@
 <table class="topics_table">
   <tr>
-    <td>Topic [
+    <td>Topic
   <% if logged_in? %>
-    <a href="/topics/<%= current_user %>/new">create new</a>
-  <% end %> ]</td>
+    [ <a href="/topics/<%= current_user %>/new">create new</a> ]
+  <% end %> </td>
     <td>Votes</td>
     <td>Comments</td>
   </tr>
   <% if @topics != nil
     @topics.each do |topic| %>
-    <tr>
+    <tr class="topic_row">
       <td class="table_name"><a href="/topics/<%= topic['id'] %>"><%= topic['title'] %></a></td>
       <td><%= topic['num_votes'] %></td>
       <td><%= topic['num_comments'] %></td>

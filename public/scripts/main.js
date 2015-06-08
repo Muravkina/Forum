@@ -14,7 +14,4 @@ window.addEventListener('load', function() {
     $("div.leave_comment").hide()
   })
 
-
-
-
 })
