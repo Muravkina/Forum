@@ -1,10 +1,13 @@
-require 'sinatra'
-require 'sinatra/contrib'
-require 'pry'
-require 'sinatra/reloader'
-require 'rest-client'
-require 'redcarpet'
-require_relative 'forum'
+require 'rubygems'
+require 'bundler'
 
+Bundler.require(:default, ENV['RACK_ENV'] || 'development')
+
+require_relative 'forum'
 use Rack::MethodOverride
+
 run Forum::Server
+
+
+
+

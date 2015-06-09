@@ -289,6 +289,10 @@ width: 40%;
 .topic_author p{
   text-align: center;
 }
+.topic_text {
+  overflow: auto;
+}
+
 .topic_text p.time {
   border-bottom: 1px solid black ;
   margin-right: 10px;

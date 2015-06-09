@@ -3,7 +3,20 @@ require_relative 'db/connection'
 module Forum
   class Server < Sinatra::Base
 
-    configure do
+    configure :production do
+      set :sessions, true
+      require 'uri'
+      uri = URI.parse ENV['DATABASE_URL']
+      $db = PG.connect dbname: uri.paath[1..-1],
+            host: uri.host,
+            post: uri.port,
+            user: uri.user,
+            password: uri.password
+    end
+
+    configure :development do
+      $db = PG.connect dbname: 'forum', host: "localhost"
+
       register Sinatra::Reloader
       set :sessions, true
     end
@@ -26,7 +39,7 @@ module Forum
     end
 
     def get_geolocation
-      url = "http://ipinfo.io/json"
+      url = "http://ipinfo.io/#{request.ip}/json"
       response = RestClient.get(url)
       @data = JSON.parse(response)
     end
@@ -161,7 +174,7 @@ module Forum
     post '/topics' do
       @title = params[:title]
       @message = @markdown.render(params[:message])
-      if get_geolocation != nil
+      if @data != nil && @data != ""
         @location = @data["city"]
         tags = "#{@location.gsub(" ", "")}, #{params[:tags]}".gsub(",", "").gsub("#", "")
       end
