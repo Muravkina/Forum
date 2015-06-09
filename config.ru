@@ -3,8 +3,8 @@ require 'bundler'
 
 Bundler.require(:default, ENV['RACK_ENV'] || 'development')
 
-require_relative 'forum'
 use Rack::MethodOverride
+require_relative 'forum'
 
 run Forum::Server
 

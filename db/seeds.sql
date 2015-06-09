@@ -1,4 +1,4 @@
-\c forum
+
 
 TRUNCATE TABLE users, topics, comments RESTART IDENTITY;
 

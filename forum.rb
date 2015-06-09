@@ -1,4 +1,4 @@
-require_relative 'db/connection'
+
 
 module Forum
   class Server < Sinatra::Base
@@ -7,7 +7,7 @@ module Forum
       set :sessions, true
       require 'uri'
       uri = URI.parse ENV['DATABASE_URL']
-      $db = PG.connect dbname: uri.paath[1..-1],
+      $db = PG.connect dbname: uri.path[1..-1],
             host: uri.host,
             post: uri.port,
             user: uri.user,
