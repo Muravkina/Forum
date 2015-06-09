@@ -9,7 +9,7 @@ module Forum
       uri = URI.parse ENV['DATABASE_URL']
       $db = PG.connect dbname: uri.path[1..-1],
             host: uri.host,
-            post: uri.port,
+            port: uri.port,
             user: uri.user,
             password: uri.password
     end
