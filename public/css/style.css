@@ -2,7 +2,7 @@ html {
   height: 100%;
 }
 body {
-  width: 1680px;
+  width: 100%;
   height: 100%;
   overflow: auto;
   background-image: url(/img/background1.jpg);
@@ -139,20 +139,20 @@ header a {
   font-weight: bold;
 }
 header .home{
-  position: absolute;
-  top: 195px;
-  right: 330px;
+  position: relative;
+  top: 71%;
+  right: -79%;
 }
 header .log_out {
   position: absolute;
-  top: 195px;
-  right: 215px;
+  top: 198px;
+  right: 4%;
 }
 header .profile_button {
   display: inline-block;
-  position: absolute;
-  top: 195px;
-  right: 510px;
+  position: relative;
+  top: 176px;
+  right: -70%;
 }
 header .profile_button img {
   display: inline;

@@ -1,5 +1,4 @@
 
-
 module Forum
   class Server < Sinatra::Base
 
@@ -17,7 +16,7 @@ module Forum
     configure :development do
       $db = PG.connect dbname: 'forum', host: "localhost"
 
-      register Sinatra::Reloader
+    register Sinatra::Reloader
       set :sessions, true
     end
 
